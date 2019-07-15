@@ -1,11 +1,16 @@
-FROM node:8-slim
+FROM node:latest
 
 WORKDIR /opt/app/
 
-COPY package.json yarn.lock ./
+COPY package.json ./
 
-RUN yarn install
+RUN npm install -g nodemon
+RUN npm install
+RUN npm audit fix
+RUN npm update uglifyjs-webpack-plugin
 
 COPY . .
 
-CMD yarn start
+CMD npm start dev
+
+EXPOSE 8080

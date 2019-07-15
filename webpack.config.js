@@ -1,11 +1,12 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const plugins = [
-  new CleanWebpackPlugin(['dist/js'], {
-    verbose: true
-  }),
+  new CleanWebpackPlugin({
+                            cleanOnceBeforeBuildPatterns: ['./js/build/*','./css/build/*'],
+                            verbose: true
+                        }),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, 'src/server/views/index.html'),
     filename: 'index.html',
